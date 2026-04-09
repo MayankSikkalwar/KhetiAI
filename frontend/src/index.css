@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #F8FAF0;
+  --color-charcoal: #1F2937;
+}
+
+body {
+  background-color: var(--color-brand-50);
+  color: var(--color-charcoal);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
