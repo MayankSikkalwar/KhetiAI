@@ -1,3 +1,5 @@
+from dotenv import load_dotenv
+load_dotenv() # Load environment variables before doing anything else
 from app import app
 
 if __name__ == "__main__":

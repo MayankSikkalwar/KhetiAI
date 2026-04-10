@@ -1,9 +1,10 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { Card, CardContent } from '../../../components/common/Card'
 import { Button } from '../../../components/common/Button'
 import { UploadCloud, CheckCircle2, AlertCircle, RefreshCw } from 'lucide-react'
 import { useImageAnalysis } from '../hooks/useImageAnalysis'
 import { cn } from '../../../utils/cn'
+import { useNavigate } from 'react-router-dom'
 
 export function DiseaseAnalyzer() {
   const { status, result, error, performAnalysis, reset } = useImageAnalysis()
@@ -44,6 +45,14 @@ export function DiseaseAnalyzer() {
   const handleAnalyze = () => {
     if (selectedImage) performAnalysis(selectedImage)
   }
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (status === 'success' && result) {
+      navigate('/report', { state: { result } })
+    }
+  }, [status, result, navigate])
 
   const handleReset = () => {
     setSelectedImage(null)
@@ -97,21 +106,6 @@ export function DiseaseAnalyzer() {
               <div className="flex gap-4 w-full justify-center">
                 <Button variant="outline" onClick={handleReset}>Cancel</Button>
                 <Button onClick={handleAnalyze}>Analyze Crop Status</Button>
-              </div>
-            )}
-
-            {status === 'success' && result && (
-              <div className="w-full bg-green-50 border border-green-200 rounded-2xl p-6 text-center animate-in slide-in-from-bottom-4">
-                <CheckCircle2 className="w-12 h-12 text-green-500 mx-auto mb-3" />
-                <h4 className="text-sm font-semibold text-green-700 uppercase tracking-widest mb-1">Detection Result</h4>
-                <p className="text-3xl font-bold text-green-900 mb-4">{result.disease}</p>
-                
-                <div className="w-full bg-gray-200 rounded-full h-2.5 mb-2">
-                  <div className="bg-green-600 h-2.5 rounded-full" style={{ width: `${(result.confidence * 100)}%` }}></div>
-                </div>
-                <p className="text-sm text-green-800">Confidence: {(result.confidence * 100).toFixed(1)}%</p>
-
-                <Button variant="outline" className="mt-6 w-full" onClick={handleReset}>Analyze Another Image</Button>
               </div>
             )}
 
