@@ -10,7 +10,8 @@ import {
   Minimize2,
   Globe,
   Loader2,
-  Square
+  Square,
+  ChevronDown
 } from 'lucide-react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -31,10 +32,16 @@ export function VoiceAssistant() {
   ]);
   const [input, setInput] = useState('');
   const [language, setLanguage] = useState('en');
+  const [isLangOpen, setIsLangOpen] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isThinking, setIsThinking] = useState(false);
   const [autoSpeak, setAutoSpeak] = useState(true);
+
+  const LANGUAGES = [
+    { id: 'en', label: 'English' },
+    { id: 'hi', label: 'हिन्दी' },
+  ];
 
   const scrollRef = useRef(null);
   const recognitionRef = useRef(null);
@@ -191,12 +198,35 @@ export function VoiceAssistant() {
         </div>
 
         <div className="flex items-center gap-2">
-          <button
-            onClick={() => setLanguage(lang => lang === 'en' ? 'hi' : 'en')}
-            className="text-xs font-bold px-2 py-1 bg-white/20 rounded hover:bg-white/30 transition-colors"
-          >
-            {language === 'en' ? 'हिन्दी' : 'English'}
-          </button>
+          {/* Language Dropdown */}
+          <div className="relative">
+            <button
+              onClick={() => setIsLangOpen(o => !o)}
+              className="flex items-center gap-1 text-xs font-bold px-2.5 py-1.5 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
+            >
+              <Globe className="w-3 h-3" />
+              {LANGUAGES.find(l => l.id === language)?.label}
+              <ChevronDown className={cn("w-3 h-3 transition-transform duration-200", isLangOpen && "rotate-180")} />
+            </button>
+            {isLangOpen && (
+              <div className="absolute right-0 top-full mt-1 bg-white rounded-xl shadow-xl shadow-black/10 border border-green-50 overflow-hidden z-50 min-w-[110px]">
+                {LANGUAGES.map((lang) => (
+                  <button
+                    key={lang.id}
+                    onClick={() => { setLanguage(lang.id); setIsLangOpen(false); }}
+                    className={cn(
+                      "w-full text-left px-4 py-2.5 text-sm font-medium transition-colors hover:bg-green-50",
+                      language === lang.id
+                        ? "text-green-700 bg-green-50/80 font-bold"
+                        : "text-green-900/70"
+                    )}
+                  >
+                    {lang.label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
           <button onClick={() => setIsMinimized(!isMinimized)} className="hover:bg-white/20 p-1 rounded">
             <Minimize2 className="w-4 h-4" />
           </button>
