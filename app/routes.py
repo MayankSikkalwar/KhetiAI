@@ -2,6 +2,7 @@ from flask import render_template, request, jsonify
 from app import app
 from app.services.yolov8_service import analyze_image_base64
 from app.services.llm_report_service import generate_report
+from app.services.news_service import fetch_ag_news
 
 @app.route('/')
 def index():
@@ -34,4 +35,9 @@ def generate_ai_report():
         return jsonify({"success": False, "error": "Missing disease or confidence data"}), 400
         
     result = generate_report(disease, float(confidence))
+    return jsonify(result)
+
+@app.route('/api/news', methods=['GET'])
+def get_ag_news():
+    result = fetch_ag_news()
     return jsonify(result)
