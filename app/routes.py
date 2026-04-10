@@ -3,6 +3,7 @@ from app import app
 from app.services.yolov8_service import analyze_image_base64
 from app.services.llm_report_service import generate_report
 from app.services.news_service import fetch_ag_news
+from app.services.voice_assistant_service import generate_chat_response
 
 @app.route('/')
 def index():
@@ -116,3 +117,18 @@ def list_product():
     mock_products.insert(0, new_product)
     
     return jsonify({"success": True, "product": new_product})
+
+@app.route('/api/chat', methods=['POST'])
+def chat():
+    if not request.is_json:
+        return jsonify({"success": False, "error": "Request must be JSON"}), 400
+        
+    data = request.get_json()
+    query = data.get('query')
+    language = data.get('language', 'en')
+    
+    if not query:
+        return jsonify({"success": False, "error": "Query is required"}), 400
+        
+    result = generate_chat_response(query, language)
+    return jsonify(result)

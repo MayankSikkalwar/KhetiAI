@@ -43,9 +43,23 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Machine Learning / YOLO
-# Uncomment the line below if you don't want to track your large model files in git
-# models/*.pt
+# Machine Learning / YOLO / Models
+models/*.pt
+yolov8n.pt
 datasets/
 runs/
-yolov8n.pt
+
+# Database and Logs
+*.sqlite3
+*.db
+*.log
+logs/
+
+# Flask / Backend extras
+instance/
+.webassets-cache
+
+# OS garbage
+.DS_Store
+Thumbs.db
+desktop.ini

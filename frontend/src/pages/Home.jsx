@@ -4,6 +4,7 @@ import { Hero } from '../components/layout/Hero'
 import { DiseaseAnalyzer } from '../features/disease-analysis/components/DiseaseAnalyzer'
 import { Card, CardContent } from '../components/common/Card'
 import { Leaf, Sprout, ShieldCheck } from 'lucide-react'
+import { VoiceAssistant } from '../features/voice-assistant/components/VoiceAssistant'
 
 export function Home() {
   return (
@@ -43,6 +44,7 @@ export function Home() {
           </div>
         </section>
       </main>
+      <VoiceAssistant />
     </>
   )
 }

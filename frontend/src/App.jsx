@@ -4,6 +4,7 @@ import { Home } from './pages/Home'
 import { Report } from './pages/Report'
 import { AgNews } from './pages/AgNews'
 import { Marketplace } from './pages/Marketplace'
+import { Schemes } from './pages/Schemes'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/report" element={<Report />} />
           <Route path="/news" element={<AgNews />} />
           <Route path="/marketplace" element={<Marketplace />} />
+          <Route path="/schemes" element={<Schemes />} />
         </Routes>
       </div>
     </Router>
