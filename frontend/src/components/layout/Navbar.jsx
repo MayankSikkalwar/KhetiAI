@@ -33,6 +33,7 @@ export function Navbar() {
             <NavLink to="/">Home</NavLink>
             <NavLink to="/schemes">Schemes</NavLink>
             <NavLink to="/news">Ag News</NavLink>
+            <NavLink to="/marketplace">Marketplace</NavLink>
             <NavLink to="/about">About Us</NavLink>
           </div>
         </div>
@@ -57,6 +58,7 @@ export function Navbar() {
           <MobileNavLink to="/" onClick={() => setMobileMenuOpen(false)}>Home</MobileNavLink>
           <MobileNavLink to="/schemes" onClick={() => setMobileMenuOpen(false)}>Schemes</MobileNavLink>
           <MobileNavLink to="/news" onClick={() => setMobileMenuOpen(false)}>Ag News</MobileNavLink>
+          <MobileNavLink to="/marketplace" onClick={() => setMobileMenuOpen(false)}>Marketplace</MobileNavLink>
           <MobileNavLink to="/about" onClick={() => setMobileMenuOpen(false)}>About Us</MobileNavLink>
           <Button className="w-full mt-4">Analyze Crop</Button>
         </div>
