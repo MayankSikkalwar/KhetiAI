@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Leaf, Menu, X, Globe, ChevronDown } from 'lucide-react'
 import { Button } from '../common/Button'
 import { cn } from '../../utils/cn'
@@ -76,8 +76,6 @@ export function Navbar() {
               </div>
             )}
           </div>
-          <Button variant="outline" className="hidden lg:inline-flex">{t.nav_login}</Button>
-          <Button>{t.nav_analyze}</Button>
         </div>
 
         {/* Mobile Toggle */}
@@ -114,7 +112,6 @@ export function Navbar() {
               </button>
             ))}
           </div>
-          <Button className="w-full mt-2">{t.nav_analyze}</Button>
         </div>
       )}
     </nav>
@@ -122,10 +119,15 @@ export function Navbar() {
 }
 
 function NavLink({ to, children }) {
+  const location = useLocation()
+  const isActive = location.pathname === to
   return (
     <Link
       to={to}
-      className="px-4 py-2 text-sm font-medium text-green-800 hover:text-green-600 hover:bg-green-50 rounded-full transition-colors"
+      className={cn(
+        "px-4 py-2 text-sm font-medium rounded-full transition-colors",
+        isActive ? "text-green-700 bg-green-100/80 font-bold" : "text-green-800 hover:text-green-600 hover:bg-green-50"
+      )}
     >
       {children}
     </Link>
@@ -133,11 +135,16 @@ function NavLink({ to, children }) {
 }
 
 function MobileNavLink({ to, onClick, children }) {
+  const location = useLocation()
+  const isActive = location.pathname === to
   return (
     <Link
       to={to}
       onClick={onClick}
-      className="block px-4 py-3 text-base font-medium text-green-900 hover:bg-green-50 rounded-xl transition-colors"
+      className={cn(
+        "block px-4 py-3 text-base font-medium rounded-xl transition-colors",
+        isActive ? "bg-green-100 text-green-800 font-bold" : "text-green-900 hover:bg-green-50"
+      )}
     >
       {children}
     </Link>

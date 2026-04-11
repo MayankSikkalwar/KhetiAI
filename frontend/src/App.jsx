@@ -5,6 +5,7 @@ import { Report } from './pages/Report'
 import { AgNews } from './pages/AgNews'
 import { Marketplace } from './pages/Marketplace'
 import { Schemes } from './pages/Schemes'
+import { About } from './pages/About'
 import { LanguageProvider } from './context/LanguageContext'
 
 import { ChatProvider } from './context/ChatContext'
@@ -22,6 +23,7 @@ function App() {
               <Route path="/news" element={<AgNews />} />
               <Route path="/marketplace" element={<Marketplace />} />
               <Route path="/schemes" element={<Schemes />} />
+              <Route path="/about" element={<About />} />
             </Routes>
             <VoiceAssistant />
           </div>

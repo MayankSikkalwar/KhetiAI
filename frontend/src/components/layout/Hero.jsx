@@ -38,7 +38,11 @@ export function Hero() {
           </p>
           
           <div className="flex flex-wrap gap-4">
-            <Button size="lg" className="gap-2">
+            <Button 
+              size="lg" 
+              className="gap-2"
+              onClick={() => document.getElementById('analyzer')?.scrollIntoView({ behavior: 'smooth' })}
+            >
               {t.hero_cta_start} <ArrowRight className="w-4 h-4" />
             </Button>
             <Button size="lg" variant="outline" className="bg-white/5 backdrop-blur-sm">
