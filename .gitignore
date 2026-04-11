@@ -5,6 +5,7 @@
 .idea/
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # Python / Flask Backend
 __pycache__/
@@ -44,6 +45,8 @@ yarn-error.log*
 pnpm-debug.log*
 
 # Machine Learning / YOLO / Models
+# Note: models/*.pt is ignored to prevent large binaries in Git.
+# Use LFS or a download script for production models.
 models/*.pt
 yolov8n.pt
 datasets/
@@ -59,7 +62,5 @@ logs/
 instance/
 .webassets-cache
 
-# OS garbage
-.DS_Store
-Thumbs.db
-desktop.ini
+# Antigravity Scratch files
+scratch/
