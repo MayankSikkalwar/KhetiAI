@@ -7,20 +7,26 @@ import { Marketplace } from './pages/Marketplace'
 import { Schemes } from './pages/Schemes'
 import { LanguageProvider } from './context/LanguageContext'
 
+import { ChatProvider } from './context/ChatContext'
+import { VoiceAssistant } from './features/voice-assistant/components/VoiceAssistant'
+
 function App() {
   return (
     <LanguageProvider>
-      <Router>
-        <div className="min-h-screen">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/report" element={<Report />} />
-            <Route path="/news" element={<AgNews />} />
-            <Route path="/marketplace" element={<Marketplace />} />
-            <Route path="/schemes" element={<Schemes />} />
-          </Routes>
-        </div>
-      </Router>
+      <ChatProvider>
+        <Router>
+          <div className="min-h-screen">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/report" element={<Report />} />
+              <Route path="/news" element={<AgNews />} />
+              <Route path="/marketplace" element={<Marketplace />} />
+              <Route path="/schemes" element={<Schemes />} />
+            </Routes>
+            <VoiceAssistant />
+          </div>
+        </Router>
+      </ChatProvider>
     </LanguageProvider>
   )
 }

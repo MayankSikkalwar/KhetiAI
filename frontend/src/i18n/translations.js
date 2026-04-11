@@ -3,7 +3,7 @@ const translations = {
   en: {
     // Navbar
     nav_home: 'Home',
-    nav_schemes: 'Schemes',
+    nav_schemes: 'Schemes & Finance',
     nav_news: 'Ag News',
     nav_marketplace: 'Marketplace',
     nav_about: 'About Us',
@@ -73,12 +73,28 @@ const translations = {
     schemes_cta_btn: 'Ask Kheti-AI',
     schemes_finance_title: 'Financial Decision Tools',
     schemes_official: 'Official Website',
+    
+    // Eligibility Checker
+    elig_title: 'Check Your Eligibility',
+    elig_subtitle: 'Enter your profile details to see which government schemes you qualify for.',
+    elig_age: 'Age (Years)',
+    elig_income: 'Annual Income (₹)',
+    elig_citizen: 'Indian Citizen',
+    elig_aadhar: 'Aadhar Linked with Bank',
+    elig_farmer: 'Active Farmer',
+    elig_state: 'Residing State',
+    elig_check_btn: 'Check Eligible Schemes',
+    elig_reset_btn: 'Reset Profile',
+    elig_results_for: 'Eligible Schemes for You',
+    elig_no_results: 'No matching schemes found. Try adjusting your profile.',
+    elig_yes: 'Yes',
+    elig_no: 'No',
   },
 
   hi: {
     // Navbar
     nav_home: 'होम',
-    nav_schemes: 'योजनाएं',
+    nav_schemes: 'योजनाएं और वित्त',
     nav_news: 'कृषि समाचार',
     nav_marketplace: 'बाज़ार',
     nav_about: 'हमारे बारे में',
@@ -148,6 +164,22 @@ const translations = {
     schemes_cta_btn: 'खेती-AI से पूछें',
     schemes_finance_title: 'वित्तीय निर्णय उपकरण',
     schemes_official: 'आधिकारिक वेबसाइट',
+
+    // पात्रता जांच (Eligibility Checker)
+    elig_title: 'अपनी पात्रता जांचें',
+    elig_subtitle: 'यह देखने के लिए कि आप किन सरकारी योजनाओं के लिए पात्र हैं, अपनी प्रोफाइल विवरण दर्ज करें।',
+    elig_age: 'आयु (वर्ष)',
+    elig_income: 'वार्षिक आय (₹)',
+    elig_citizen: 'भारतीय नागरिक',
+    elig_aadhar: 'बैंक खाते से जुड़ा आधार',
+    elig_farmer: 'सक्रिय किसान',
+    elig_state: 'निवास का राज्य',
+    elig_check_btn: 'पात्र योजनाएं देखें',
+    elig_reset_btn: 'प्रोफ़ाइल रीसेट करें',
+    elig_results_for: 'आपके लिए पात्र योजनाएं',
+    elig_no_results: 'कोई मिलान वाली योजना नहीं मिली। अपनी प्रोफ़ाइल को समायोजित करने का प्रयास करें।',
+    elig_yes: 'हां',
+    elig_no: 'नहीं',
   }
 }
 

@@ -20,8 +20,10 @@ function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
+import { useChat } from '../../../context/ChatContext';
+
 export function VoiceAssistant() {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isChatOpen: isOpen, toggleChat } = useChat();
   const [isMinimized, setIsMinimized] = useState(false);
   const [messages, setMessages] = useState([
     {
@@ -168,7 +170,7 @@ export function VoiceAssistant() {
   if (!isOpen) {
     return (
       <button
-        onClick={() => setIsOpen(true)}
+        onClick={() => toggleChat(true)}
         className="fixed bottom-6 right-6 w-16 h-16 bg-green-600 text-white rounded-full shadow-2xl flex items-center justify-center hover:bg-green-700 transition-all hover:scale-110 z-50 group"
       >
         <MessageSquare className="w-8 h-8 group-hover:rotate-12 transition-transform" />
@@ -230,7 +232,7 @@ export function VoiceAssistant() {
           <button onClick={() => setIsMinimized(!isMinimized)} className="hover:bg-white/20 p-1 rounded">
             <Minimize2 className="w-4 h-4" />
           </button>
-          <button onClick={() => setIsOpen(false)} className="hover:bg-white/20 p-1 rounded">
+          <button onClick={() => toggleChat(false)} className="hover:bg-white/20 p-1 rounded">
             <X className="w-4 h-4" />
           </button>
         </div>
