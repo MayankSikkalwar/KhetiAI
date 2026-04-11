@@ -14,6 +14,8 @@ import {
 } from 'lucide-react'
 import { clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
+import { useLanguage } from '../context/LanguageContext'
+import translations from '../i18n/translations'
 
 // Utility for tailwind classes
 function cn(...inputs) {
@@ -99,6 +101,8 @@ const CATEGORIES = [
 export function Schemes() {
   const [selectedCategory, setSelectedCategory] = useState('General')
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const { language } = useLanguage()
+  const t = translations[language]
 
   return (
     <>
@@ -108,16 +112,16 @@ export function Schemes() {
           {/* Header */}
           <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <h1 className="text-4xl font-bold text-green-950 mb-4">Schemes & Finance</h1>
+              <h1 className="text-4xl font-bold text-green-950 mb-4">{t.schemes_title}</h1>
               <p className="text-green-800/70 max-w-2xl">
-                Access government agricultural schemes and use our smart financial tools to calculate EMI and plan your cultivation budget efficiently.
+                {t.schemes_subtitle}
               </p>
             </div>
 
             {/* Premium Category Dropdown */}
             <div className="relative w-full md:w-64">
               <label className="block text-xs font-bold text-green-900/40 uppercase tracking-widest mb-2 px-1">
-                Select Category
+                {t.schemes_select_label}
               </label>
               <button 
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -158,7 +162,7 @@ export function Schemes() {
             <div className="lg:col-span-1 space-y-6">
               <h2 className="text-xl font-bold text-green-900 flex items-center gap-2 mb-2">
                 <Landmark className="w-5 h-5" />
-                {selectedCategory} Schemes
+                {selectedCategory} {t.schemes_section_label}
               </h2>
               
               <div className="space-y-4">
@@ -175,10 +179,10 @@ export function Schemes() {
               {/* Info Card */}
               <div className="p-6 bg-gradient-to-br from-green-600 to-green-700 rounded-3xl text-white shadow-lg shadow-green-900/20">
                 <p className="text-sm font-medium opacity-90 leading-relaxed mb-4">
-                  Need help with applications? Our AI assistant can guide you through the eligibility criteria for these schemes.
+                  {t.schemes_cta_text}
                 </p>
                 <button className="w-full py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl text-sm font-bold transition-colors">
-                  Ask Kheti-AI
+                  {t.schemes_cta_btn}
                 </button>
               </div>
             </div>
@@ -188,7 +192,7 @@ export function Schemes() {
                <div className="flex items-center justify-between mb-2">
                   <h2 className="text-xl font-bold text-green-900 flex items-center gap-2">
                     <TrendingUp className="w-5 h-5" />
-                    Financial Decision Tools
+                    {t.schemes_finance_title}
                   </h2>
                </div>
                <FinanceDashboard />
@@ -201,6 +205,8 @@ export function Schemes() {
 }
 
 function SchemeItem({ title, desc, url }) {
+  const { language } = useLanguage()
+  const t = translations[language]
   return (
     <Card className="hover:border-green-300 transition-all cursor-pointer group hover:shadow-md hover:-translate-y-0.5 border-green-50 bg-white/80 backdrop-blur-sm">
       <CardContent className="p-5">
@@ -217,10 +223,11 @@ function SchemeItem({ title, desc, url }) {
           rel="noopener noreferrer"
           className="text-xs font-bold text-green-600 uppercase tracking-wider flex items-center gap-1 inline-flex hover:underline underline-offset-4"
         >
-          Official Website
+          {t.schemes_official}
           <span className="group-hover:translate-x-1 transition-transform">→</span>
         </a>
       </CardContent>
     </Card>
   )
 }
+

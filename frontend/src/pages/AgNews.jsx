@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { Navbar } from '../components/layout/Navbar'
 import { Card, CardContent } from '../components/common/Card'
 import { Newspaper, ExternalLink, AlertTriangle } from 'lucide-react'
+import { useLanguage } from '../context/LanguageContext'
+import translations from '../i18n/translations'
 
 export function AgNews() {
   const [news, setNews] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const { language } = useLanguage()
+  const t = translations[language]
 
   useEffect(() => {
     async function fetchNews() {
@@ -43,8 +47,8 @@ export function AgNews() {
               <Newspaper className="w-8 h-8" />
             </div>
             <div>
-              <h1 className="text-4xl font-bold text-green-900 tracking-tight">Agricultural News</h1>
-              <p className="text-green-700 mt-2">The latest global updates in agriculture and agritech.</p>
+              <h1 className="text-4xl font-bold text-green-900 tracking-tight">{t.news_title}</h1>
+              <p className="text-green-700 mt-2">{t.news_subtitle}</p>
             </div>
           </div>
 
@@ -71,13 +75,13 @@ export function AgNews() {
             <Card className="w-full max-w-2xl mx-auto shadow-xl border-red-200">
               <CardContent className="p-10 flex flex-col items-center text-center">
                 <AlertTriangle className="w-16 h-16 text-red-500 mb-6" />
-                <h3 className="text-2xl font-bold text-red-900 mb-4">Temporarily Unavailable</h3>
+                <h3 className="text-2xl font-bold text-red-900 mb-4">{t.news_unavailable}</h3>
                 <p className="text-red-700/80 mb-6">{error}</p>
                 <button 
                   onClick={() => window.location.reload()}
                   className="px-8 py-3 bg-red-100 text-red-700 hover:bg-red-200 font-semibold rounded-xl transition-colors"
                 >
-                  Retry Connection
+                  {t.news_retry}
                 </button>
               </CardContent>
             </Card>
@@ -85,7 +89,7 @@ export function AgNews() {
 
           {!loading && !error && news.length === 0 && (
              <div className="text-center py-20 text-green-800 text-lg">
-                No recent agricultural news could be found at this time.
+                {t.news_empty}
              </div>
           )}
 
@@ -118,7 +122,7 @@ export function AgNews() {
                     {article.ai_insight && (
                       <div className="bg-emerald-50 border border-emerald-100 rounded-xl p-4 my-2 shadow-sm">
                         <h4 className="text-sm font-bold text-emerald-900 mb-1 flex items-center gap-1.5">
-                          💡 Farmer's Insight
+                          {t.news_insight_label}
                         </h4>
                         <p className="text-emerald-800 text-sm leading-relaxed italic">
                           {article.ai_insight}
@@ -127,7 +131,7 @@ export function AgNews() {
                     )}
 
                     <p className="text-green-800/70 text-sm mb-6 flex-1 line-clamp-3 leading-relaxed mt-2">
-                       <span className="font-semibold text-green-900">Context:</span> {article.description}
+                       <span className="font-semibold text-green-900">{t.news_context}</span> {article.description}
                     </p>
                     <div className="mt-auto pt-4 border-t border-green-50">
                       <a 
@@ -136,7 +140,7 @@ export function AgNews() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center justify-center gap-2 w-full bg-green-50 hover:bg-green-100 text-green-800 font-semibold py-3 rounded-xl transition-colors"
                       >
-                        Read Full Article <ExternalLink className="w-4 h-4" />
+                        {t.news_read} <ExternalLink className="w-4 h-4" />
                       </a>
                     </div>
                   </CardContent>

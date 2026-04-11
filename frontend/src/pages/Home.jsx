@@ -5,8 +5,13 @@ import { DiseaseAnalyzer } from '../features/disease-analysis/components/Disease
 import { Card, CardContent } from '../components/common/Card'
 import { Leaf, Sprout, ShieldCheck } from 'lucide-react'
 import { VoiceAssistant } from '../features/voice-assistant/components/VoiceAssistant'
+import { useLanguage } from '../context/LanguageContext'
+import translations from '../i18n/translations'
 
 export function Home() {
+  const { language } = useLanguage()
+  const t = translations[language]
+
   return (
     <>
       <Navbar />
@@ -16,8 +21,8 @@ export function Home() {
         {/* Core AI Section */}
         <section id="analyzer" className="py-24 px-6 max-w-7xl mx-auto -mt-16 relative z-20">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-green-950 mb-4">AI Diagnostic Tool</h2>
-            <p className="text-green-800/70 max-w-2xl mx-auto">Upload an image of a leaf displaying disease symptoms. Our advanced YOLOv8 model will analyze the image and provide an instant diagnosis.</p>
+            <h2 className="text-3xl font-bold text-green-950 mb-4">{t.home_ai_title}</h2>
+            <p className="text-green-800/70 max-w-2xl mx-auto">{t.home_ai_desc}</p>
           </div>
           
           <DiseaseAnalyzer />
@@ -28,18 +33,18 @@ export function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             <FeatureCard 
               icon={<Sprout />}
-              title="Increase Crop Yield"
-              desc="Identify issues early before they spread, saving crops and improving overall farm output."
+              title={t.home_feat1_title}
+              desc={t.home_feat1_desc}
             />
             <FeatureCard 
               icon={<Leaf />}
-              title="Improve Soil Health"
-              desc="Receive targeted actionable advice based on crop condition, reducing unnecessary chemical use."
+              title={t.home_feat2_title}
+              desc={t.home_feat2_desc}
             />
             <FeatureCard 
               icon={<ShieldCheck />}
-              title="Data-Backed Security"
-              desc="Your farm data is secure. Connect effortlessly with our platform to maintain historical crop records."
+              title={t.home_feat3_title}
+              desc={t.home_feat3_desc}
             />
           </div>
         </section>
